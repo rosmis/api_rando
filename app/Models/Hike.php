@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  */
 
-class Hikes extends Model
+class Hike extends Model
 {
     use HasFactory;
 }

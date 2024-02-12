@@ -8,6 +8,7 @@ use App\Http\Resources\HikeRessource;
 use App\Models\Hike;
 use App\Services\HikesService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
 
 class HikesController extends Controller
@@ -16,6 +17,13 @@ class HikesController extends Controller
     public function __construct(
         private readonly HikesService $hikesService
     ){
+    }
+
+    public function index(): AnonymousResourceCollection
+    {
+        return HikeRessource::collection(
+            $this->hikesService->list()
+        );
     }
 
     public function store(HikesRequest $request): JsonResponse

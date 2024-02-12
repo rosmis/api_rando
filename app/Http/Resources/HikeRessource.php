@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources;
 
 use App\Models\Hike;
@@ -8,7 +10,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class HikeRessource extends JsonResource
 {
-
     /**
      * @property Hike $resource
      */

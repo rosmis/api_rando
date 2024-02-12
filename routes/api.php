@@ -19,5 +19,5 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+Route::get('/hikes', [HikesController::class, 'index']);
 Route::post('/hikes', [HikesController::class, 'store']);
-Route::get('/hikes', [HikesController::class, 'store']);

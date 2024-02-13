@@ -36,6 +36,8 @@ class Hike extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public function images(): HasMany
     {
         return $this->hasMany(HikeImage::class);

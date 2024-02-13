@@ -21,6 +21,8 @@ class HikeImage extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public function hike(): BelongsTo
     {
         return $this->belongsTo(Hike::class);

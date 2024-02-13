@@ -28,8 +28,9 @@ class HikesRequest extends FormRequest
             'lowest_point' => ['required', 'integer'],
             'location' => ['required', 'string'],
             'ign_reference' => ['nullable', 'string'],
-            'ign_url' => ['nullable', 'string'],
+            'hike_url' => ['nullable', 'string'],
             'is_return_starting_point' => ['required', 'boolean'],
+            'imagesUrl' => ['required', 'array'],
         ];
     }
 }

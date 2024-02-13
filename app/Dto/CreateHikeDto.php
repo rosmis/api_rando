@@ -21,8 +21,9 @@ final class CreateHikeDto
         public int $lowestPoint,
         public string $location,
         public ?string $ignReference,
-        public ?string $ignUrl,
+        public ?string $hikeUrl,
         public bool $isReturnStartingPoint,
+        public ?array $imagesUrl,
     ) {
     }
 
@@ -46,8 +47,9 @@ final class CreateHikeDto
             lowestPoint: $data['lowest_point'],
             location: $data['location'],
             ignReference: $data['ign_reference'] ?? null,
-            ignUrl: $data['ign_url'] ?? null,
+            hikeUrl: $data['hike_url'] ?? null,
             isReturnStartingPoint: $data['is_return_starting_point'],
+            imagesUrl: $data['images_url'] ?? null,
         );
     }
 }

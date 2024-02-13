@@ -27,7 +27,7 @@ return new class extends Migration
             $table->unsignedInteger('lowest_point');
             $table->string('location');
             $table->string('ign_reference')->nullable();
-            $table->string('ign_url')->nullable();
+            $table->string('hike_url')->nullable();
             $table->boolean('is_return_starting_point')->default(false);
             $table->timestamps();
         });

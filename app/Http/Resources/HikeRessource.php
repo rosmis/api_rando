@@ -30,7 +30,7 @@ class HikeRessource extends JsonResource
             'lowest_point' => $this->resource->lowest_point,
             'location' => $this->resource->location,
             'ign_reference' => $this->resource->ign_reference,
-            'ign_url' => $this->resource->ign_url,
+            'hike_url' => $this->resource->hike_url,
             'is_return_starting_point' => $this->resource->is_return_starting_point,
         ];
     }

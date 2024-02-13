@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Attributes
@@ -22,14 +23,21 @@ use Illuminate\Database\Eloquent\Model;
  * @property int lowest_point
  * @property string location
  * @property string ign_reference
- * @property string ign_url
+ * @property string hike_url
  * @property bool is_return_starting_point
  * @property Carbon created_at
  * @property Carbon updated_at
  * 
+ * Relations
+ * @property Collection<int,Hike> $images
  */
 
 class Hike extends Model
 {
     use HasFactory;
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(HikeImage::class);
+    }
 }

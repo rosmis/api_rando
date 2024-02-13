@@ -6,12 +6,13 @@ namespace App\Actions;
 
 use App\Dto\CreateHikeDto;
 use App\Models\Hike;
+use App\Models\HikeImage;
 
 class CreateHikeAction
 {
     public function __invoke(CreateHikeDto $hikeDto): Hike
     {
-        return Hike::query()
+        $hike = Hike::query()
             ->create([
                 'title' => $hikeDto->title,
                 'excerpt' => $hikeDto->excerpt,
@@ -27,8 +28,20 @@ class CreateHikeAction
                 'lowest_point' => $hikeDto->lowestPoint,
                 'location' => $hikeDto->location,
                 'ign_reference' => $hikeDto->ignReference,
-                'ign_url' => $hikeDto->ignUrl,
+                'hike_url' => $hikeDto->hikeUrl,
                 'is_return_starting_point' => $hikeDto->isReturnStartingPoint,
             ]);
+
+        $hikeImagesCollection = collect($hikeDto->imagesUrl);
+
+        $hikeImagesCollection->each(function (string $imageUrl) use ($hike) {
+            HikeImage::query()
+                ->create([
+                    'hike_id' => $hike->id,
+                    'image_url' => $imageUrl,
+                ]);
+        });
+
+        return $hike;
     }
 }

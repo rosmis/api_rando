@@ -29,6 +29,7 @@ class CreateHikeAction
                 'location' => $hikeDto->location,
                 'ign_reference' => $hikeDto->ignReference,
                 'hike_url' => $hikeDto->hikeUrl,
+                'gpx_url' => $hikeDto->gpxUrl,
                 'is_return_starting_point' => $hikeDto->isReturnStartingPoint,
             ]);
 

@@ -22,6 +22,7 @@ final class CreateHikeDto
         public string $location,
         public ?string $ignReference,
         public ?string $hikeUrl,
+        public string $gpxUrl,
         public bool $isReturnStartingPoint,
         public ?array $imagesUrl,
     ) {
@@ -48,6 +49,7 @@ final class CreateHikeDto
             location: $data['location'],
             ignReference: $data['ign_reference'] ?? null,
             hikeUrl: $data['hike_url'] ?? null,
+            gpxUrl: $data['gpx_url'],
             isReturnStartingPoint: $data['is_return_starting_point'],
             imagesUrl: $data['images_url'] ?? null,
         );

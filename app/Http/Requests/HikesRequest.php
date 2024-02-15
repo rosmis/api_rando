@@ -29,6 +29,7 @@ class HikesRequest extends FormRequest
             'location' => ['required', 'string'],
             'ign_reference' => ['nullable', 'string'],
             'hike_url' => ['nullable', 'string'],
+            'gpx_url' => ['required', 'string'],
             'is_return_starting_point' => ['required', 'boolean'],
             'images_url' => ['nullable', 'array'],
         ];

@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('location');
             $table->string('ign_reference')->nullable();
             $table->string('hike_url')->nullable();
+            $table->string('gpx_url');
             $table->boolean('is_return_starting_point')->default(false);
             $table->timestamps();
         });

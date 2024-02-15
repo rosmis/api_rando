@@ -21,3 +21,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/hikes', [HikesController::class, 'index']);
 Route::post('/hikes', [HikesController::class, 'store']);
+
+// Route::get('/species', [HikesController::class, 'index']);

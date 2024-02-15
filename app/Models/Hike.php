@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string location
  * @property string ign_reference
  * @property string hike_url
+ * @property string gpx_url
  * @property bool is_return_starting_point
  * @property Carbon created_at
  * @property Carbon updated_at

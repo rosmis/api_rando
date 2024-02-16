@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\GpsConversionTrait;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 
 /**
  * Attributes
@@ -36,11 +39,25 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Hike extends Model
 {
     use HasFactory;
+    use GpsConversionTrait;
 
     protected $guarded = ['id'];
+
+    protected $casts = [
+        'is_return_starting_point' => 'boolean'
+    ];
 
     public function images(): HasMany
     {
         return $this->hasMany(HikeImage::class);
+    }
+
+    public function location(): Attribute
+    {
+        return Attribute::make(
+            get: function (string $value) {
+                return $this->convertCoordinates($value);
+            }
+        );
     }
 }

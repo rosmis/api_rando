@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/hikes', [HikesController::class, 'index']);
+Route::get('/hikes/{id}', [HikesController::class, 'show']);
 Route::post('/hikes', [HikesController::class, 'store']);
 
 // Route::get('/species', [HikesController::class, 'index']);

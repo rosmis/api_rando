@@ -26,6 +26,13 @@ class HikesController extends Controller
         );
     }
 
+    public function show(int $id): JsonResponse
+    {
+        return HikeRessource::make(
+            $this->hikesService->show($id)
+        )->response();
+    }
+
     public function store(HikesRequest $request): JsonResponse
     {
         $hikeData = $request->safe()->toArray();

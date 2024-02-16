@@ -16,6 +16,7 @@ class HikeRessource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->resource->id,
             'title' => $this->resource->title,
             'excerpt' => $this->resource->excerpt,
             'description' => $this->resource->description,
@@ -31,6 +32,7 @@ class HikeRessource extends JsonResource
             'location' => $this->resource->location,
             'ign_reference' => $this->resource->ign_reference,
             'hike_url' => $this->resource->hike_url,
+            'gpx_url' => $this->resource->gpx_url,
             'is_return_starting_point' => $this->resource->is_return_starting_point,
         ];
     }

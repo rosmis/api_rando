@@ -15,6 +15,7 @@ class ListHikesAction
     public function __invoke(): Collection
     {
         return Hike::query()
+            ->with('images')
             ->get();
     }
 }

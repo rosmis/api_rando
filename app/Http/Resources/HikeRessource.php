@@ -34,6 +34,10 @@ class HikeRessource extends JsonResource
             'hike_url' => $this->resource->hike_url,
             'gpx_url' => $this->resource->gpx_url,
             'is_return_starting_point' => $this->resource->is_return_starting_point,
+            'images' => $this->whenLoaded(
+                'images',
+                fn () => HikeImageRessource::collection($this->resource->images)
+            )
         ];
     }
 }

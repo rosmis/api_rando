@@ -11,6 +11,7 @@ class ListHikeAction
     public function __invoke(int $id): Hike
     {
         return Hike::query()
+            ->with('images')
             ->findOrFail($id);
     }
 }

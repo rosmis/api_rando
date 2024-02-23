@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Dto\CreateHikeDto;
+use App\Dto\HikeQueryDto;
+use App\Http\Requests\HikeQueryRequest;
 use App\Http\Requests\HikesRequest;
 use App\Http\Resources\HikeRessource;
 use App\Models\Hike;
@@ -19,10 +21,12 @@ class HikesController extends Controller
     ){
     }
 
-    public function index(): AnonymousResourceCollection
+    public function index(HikeQueryRequest $request): AnonymousResourceCollection
     {
         return HikeRessource::collection(
-            $this->hikesService->list()
+            $this->hikesService->list(
+                HikeQueryDto::fromArray($request->validated())
+            )
         );
     }
 

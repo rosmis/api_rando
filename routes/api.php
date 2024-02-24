@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HikesController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,14 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('hikes/{id}', [HikesController::class, 'show']);
 });
 
-Route::get('/hikes', [HikesController::class, 'index']);
-Route::get('/hikes/prev', [HikesController::class, 'indexPrev']);
+Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/hikes/{id}', [HikesController::class, 'show']);
-Route::post('/hikes', [HikesController::class, 'store']);
+Route::get('hikes', [HikesController::class, 'index']);
+Route::get('hikes/prev', [HikesController::class, 'indexPrev']);
+
+Route::post('hikes', [HikesController::class, 'store']);
 
 // Route::get('/species', [HikesController::class, 'index']);

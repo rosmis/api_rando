@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Traits;
 
+use App\Dto\HikeMinMaxGpsCoordinatesDto;
+use App\Dto\HikeQueryDto;
 use Illuminate\Support\Collection;
 
 trait GpsConversionTrait
@@ -34,5 +36,19 @@ trait GpsConversionTrait
             return (float)$matches[0];
         }
         return null;
+    }
+
+    public function getMinMaxGpsCoordinatesRadius(HikeQueryDto $query): HikeMinMaxGpsCoordinatesDto
+    {
+        $earthRadius = 6371; // Earth's radius in kilometers
+        $deltaLat = $query->radius / $earthRadius;
+        $deltaLon = rad2deg(asin(sin(deg2rad($deltaLat)) / cos(deg2rad($query->latitude))));
+
+        $minLat = $query->latitude - $deltaLat;
+        $maxLat = $query->latitude + $deltaLat;
+        $minLon = $query->longitude - $deltaLon;
+        $maxLon = $query->longitude + $deltaLon;
+
+        return HikeMinMaxGpsCoordinatesDto::fromArray([$maxLat, $minLat, $minLon, $maxLon]);
     }
 }

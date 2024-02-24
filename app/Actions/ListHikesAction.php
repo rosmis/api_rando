@@ -6,12 +6,14 @@ namespace App\Actions;
 
 use App\Dto\HikeQueryDto;
 use App\Models\Hike;
+use App\Traits\GpsConversionTrait;
 use App\Traits\HaversineTrait;
 use Illuminate\Support\Collection;
 
 class ListHikesAction
 {
     use HaversineTrait;
+    use GpsConversionTrait;
 
     /**
      * @return Collection<int,Hike>
@@ -19,20 +21,13 @@ class ListHikesAction
     public function __invoke(HikeQueryDto $query): Collection
     {
 
-        $earthRadius = 6371; // Earth's radius in kilometers
-        $deltaLat = $query->radius / $earthRadius;
-        $deltaLon = rad2deg(asin(sin(deg2rad($deltaLat)) / cos(deg2rad($query->latitude))));
-        $minLat = $query->latitude - $deltaLat;
-        $maxLat = $query->latitude + $deltaLat;
-        $minLon = $query->longitude - $deltaLon;
-        $maxLon = $query->longitude + $deltaLon;
+        $minMaxCoordinates = $this->getMinMaxGpsCoordinatesRadius($query);
 
         /** @var Collection<int,Hike> */
         $hikes = Hike::query()
-            ->whereBetween('latitude', [$minLat, $maxLat])
-            ->whereBetween('longitude', [$minLon, $maxLon])
+            ->withBetweenGpsLocations($minMaxCoordinates)
             ->with('images')
-            ->get();
+            ->paginate(10);
 
         $filteredHikes = $hikes->filter(function ($hike) use ($query) {
             $distance = $this->haversine(

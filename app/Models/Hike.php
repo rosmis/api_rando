@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Builders\HikeBuilder;
 use App\Traits\GpsConversionTrait;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -34,6 +36,11 @@ use Illuminate\Support\Collection;
  * 
  * Relations
  * @property Collection<int,Hike> $images
+ * 
+ * - Support
+ *
+ * @method static HikeBuilder query()
+ * @method static HikeBuilder newQuery()
  */
 
 class Hike extends Model
@@ -59,5 +66,15 @@ class Hike extends Model
                 return $this->convertCoordinates($value);
             }
         );
+    }
+
+    /**
+     * Create a new Eloquent query builder for the model.
+     *
+     * @param  QueryBuilder  $query
+     */
+    public function newEloquentBuilder($query): HikeBuilder
+    {
+        return new HikeBuilder($query);
     }
 }

@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/hikes', [HikesController::class, 'index']);
 Route::get('/hikes/prev', [HikesController::class, 'indexPrev']);
+
 Route::get('/hikes/{id}', [HikesController::class, 'show']);
 Route::post('/hikes', [HikesController::class, 'store']);
 

@@ -17,7 +17,9 @@ class HikeBuilder extends Builder
 {
     public function withEssentialColumns(): self
     {
-        return $this->select(['title', 'difficulty', 'excerpt', 'location']);
+        return $this->select(
+            ['id', 'title', 'difficulty', 'excerpt', 'location', 'activity_type', 'distance', 'duration']
+        );
     }
 
     public function withBetweenGpsLocations(

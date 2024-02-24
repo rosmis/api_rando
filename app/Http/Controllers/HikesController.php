@@ -6,6 +6,7 @@ use App\Dto\CreateHikeDto;
 use App\Dto\HikeQueryDto;
 use App\Http\Requests\HikeQueryRequest;
 use App\Http\Requests\HikesRequest;
+use App\Http\Resources\HikePreviewRessource;
 use App\Http\Resources\HikeRessource;
 use App\Models\Hike;
 use App\Services\HikesService;
@@ -25,6 +26,15 @@ class HikesController extends Controller
     {
         return HikeRessource::collection(
             $this->hikesService->list(
+                HikeQueryDto::fromArray($request->validated())
+            )
+        );
+    }
+
+    public function indexPrev(HikeQueryRequest $request): AnonymousResourceCollection
+    {
+        return HikePreviewRessource::collection(
+            $this->hikesService->listPreview(
                 HikeQueryDto::fromArray($request->validated())
             )
         );

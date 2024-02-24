@@ -7,6 +7,7 @@ namespace App\Services;
 use App\Actions\CreateHikeAction;
 use App\Actions\ListHikeAction;
 use App\Actions\ListHikesAction;
+use App\Actions\ListPreviewHikesAction;
 use App\Dto\CreateHikeDto;
 use App\Dto\HikeQueryDto;
 use App\Models\Hike;
@@ -20,6 +21,14 @@ class HikesService
     public function list(HikeQueryDto $query): Collection
     {
         return app()->call(ListHikesAction::class, ['query' => $query]);
+    }
+
+    /**
+     * @return Collection<int,Hike>
+     */
+    public function listPreview(HikeQueryDto $query): Collection
+    {
+        return app()->call(ListPreviewHikesAction::class, ['query' => $query]);
     }
 
     public function show(int $id): Hike

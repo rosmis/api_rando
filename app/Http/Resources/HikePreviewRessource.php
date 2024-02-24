@@ -8,7 +8,7 @@ use App\Models\Hike;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class HikeRessource extends JsonResource
+class HikePreviewRessource extends JsonResource
 {
     /**
      * @property Hike $resource
@@ -23,12 +23,6 @@ class HikeRessource extends JsonResource
             'difficulty' => $this->resource->difficulty,
             'distance' => $this->resource->distance,
             'duration' => $this->resource->duration,
-            'positive_elevation' => $this->resource->positive_elevation,
-            'negative_elevation' => $this->resource->negative_elevation,
-            'municipality' => $this->resource->municipality,
-            'highest_point' => $this->resource->highest_point,
-            'lowest_point' => $this->resource->lowest_point,
-            'location' => $this->resource->location,
             'images' => $this->whenLoaded(
                 'images',
                 fn () => HikeImageRessource::collection($this->resource->images)

@@ -19,11 +19,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('hikes/{id}', [HikesController::class, 'show']);
 });
 
+Route::prefix('hikes')->group(function () {
+    Route::get('/', [HikesController::class, 'index']);
+    Route::get('/prev', [HikesController::class, 'indexPrev']);
+
+    Route::post('/', [HikesController::class, 'store']);
+});
+
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('hikes', [HikesController::class, 'index']);
-Route::get('hikes/prev', [HikesController::class, 'indexPrev']);
 
-Route::post('hikes', [HikesController::class, 'store']);
 
 // Route::get('/species', [HikesController::class, 'index']);

@@ -21,7 +21,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::prefix('hikes')->group(function () {
     Route::get('/', [HikesController::class, 'index']);
-    Route::get('/prev', [HikesController::class, 'indexPrev']);
+    Route::get('/search', [HikesController::class, 'indexPrev']);
 
     Route::post('/', [HikesController::class, 'store']);
 });

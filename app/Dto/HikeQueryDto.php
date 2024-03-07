@@ -7,9 +7,9 @@ namespace App\Dto;
 final class HikeQueryDto
 {
     public function __construct(
-        public float $latitude,
-        public float $longitude,
-        public float $radius,
+        public string|float $latitude,
+        public string|float $longitude,
+        public string|float $radius,
     ) {
     }
 
@@ -19,9 +19,9 @@ final class HikeQueryDto
     public static function fromArray(array $data): self
     {
         return new self(
-            latitude: $data['latitude'],
-            longitude: $data['longitude'],
-            radius: $data['radius'],
+            latitude: (float) $data['latitude'],
+            longitude: (float) $data['longitude'],
+            radius: (float) $data['radius'],
         );
     }
 }

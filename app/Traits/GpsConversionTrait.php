@@ -49,6 +49,11 @@ trait GpsConversionTrait
         $minLon = $query->longitude - $deltaLon;
         $maxLon = $query->longitude + $deltaLon;
 
-        return HikeMinMaxGpsCoordinatesDto::fromArray([$maxLat, $minLat, $minLon, $maxLon]);
+        return HikeMinMaxGpsCoordinatesDto::fromArray([
+            'maxLat' => $maxLat, 
+            'minLat' => $minLat, 
+            'minLon' =>$minLon, 
+            'maxLon' =>$maxLon
+        ]);
     }
 }

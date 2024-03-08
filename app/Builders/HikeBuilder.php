@@ -26,11 +26,11 @@ class HikeBuilder extends Builder
     {
         return $this
             ->selectRaw(
-                '(6371 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude)))) AS distance',
+                '(6371 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude)))) AS hikeDistance',
                 [$query->latitude, $query->longitude, $query->latitude]
             )
-            ->having('distance', '<', $query->radius)
-            ->orderBy('distance');
+            ->having('hikeDistance', '<', $query->radius)
+            ->orderBy('hikeDistance');
     }
 
 }

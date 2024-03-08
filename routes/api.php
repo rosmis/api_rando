@@ -15,13 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth:sanctum'])->group(function () {
-});
-Route::get('hikes/{id}', [HikesController::class, 'show']);
+// Route::middleware(['auth:sanctum'])->group(function () {
+// });
 
 Route::prefix('hikes')->group(function () {
     Route::get('/', [HikesController::class, 'index']);
     Route::get('/search', [HikesController::class, 'indexPrev']);
+
+    Route::get('{id}', [HikesController::class, 'show']);
+
 
     Route::post('/', [HikesController::class, 'store']);
 });

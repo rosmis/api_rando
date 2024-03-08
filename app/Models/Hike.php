@@ -26,7 +26,8 @@ use Illuminate\Support\Collection;
  * @property string municipality
  * @property int highest_point
  * @property int lowest_point
- * @property string location
+ * @property float latitude
+ * @property float longitude
  * @property string ign_reference
  * @property string hike_url
  * @property string gpx_url
@@ -46,26 +47,18 @@ use Illuminate\Support\Collection;
 class Hike extends Model
 {
     use HasFactory;
-    use GpsConversionTrait;
 
     protected $guarded = ['id'];
 
     protected $casts = [
-        'is_return_starting_point' => 'boolean'
+        'is_return_starting_point' => 'boolean',
+        'latitude' => 'float',
+        'longitude' => 'float',
     ];
 
     public function images(): HasMany
     {
         return $this->hasMany(HikeImage::class);
-    }
-
-    public function location(): Attribute
-    {
-        return Attribute::make(
-            get: function (string $value) {
-                return $this->convertCoordinates($value);
-            }
-        );
     }
 
     /**

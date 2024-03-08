@@ -11,6 +11,7 @@ use App\Actions\ListPreviewHikesAction;
 use App\Dto\CreateHikeDto;
 use App\Dto\HikeQueryDto;
 use App\Models\Hike;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 class HikesService
@@ -23,10 +24,7 @@ class HikesService
         return app()->call(ListHikesAction::class, ['query' => $query]);
     }
 
-    /**
-     * @return Collection<int,Hike>
-     */
-    public function listPreview(HikeQueryDto $query): Collection
+    public function listPreview(HikeQueryDto $query): LengthAwarePaginator
     {
         return app()->call(ListPreviewHikesAction::class, ['query' => $query]);
     }

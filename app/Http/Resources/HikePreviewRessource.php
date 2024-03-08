@@ -20,6 +20,8 @@ class HikePreviewRessource extends JsonResource
             'title' => $this->resource->title,
             'excerpt' => $this->resource->excerpt,
             'activity_type' => $this->resource->activity_type,
+            'latitude' => $this->resource->latitude,
+            'longitude' => $this->resource->longitude,
             'difficulty' => $this->resource->difficulty,
             'distance' => $this->resource->distance,
             'duration' => $this->resource->duration,

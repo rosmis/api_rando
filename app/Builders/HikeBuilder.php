@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Builders;
 
-use App\Dto\HikeMinMaxGpsCoordinatesDto;
+use App\Dto\HikeQueryDto;
 use App\Models\Hike;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -18,17 +18,19 @@ class HikeBuilder extends Builder
     public function withEssentialColumns(): self
     {
         return $this->select(
-            ['id', 'title', 'difficulty', 'excerpt', 'location', 'activity_type', 'distance', 'duration']
+            ['id', 'title', 'difficulty', 'excerpt', 'latitude', 'longitude', 'activity_type', 'distance', 'duration']
         );
     }
 
-    public function withBetweenGpsLocations(
-        HikeMinMaxGpsCoordinatesDto $coordinates
-    ): self {
-        //TODO test this shit cuz i don't have separate long lat cols in the table
+    public function withCoordinatesRadius(HikeQueryDto $query): self
+    {
         return $this
-            ->whereBetween('latitude', [$coordinates->minLat, $coordinates->maxLat])
-            ->whereBetween('longitude', [$coordinates->minLon, $coordinates->maxLon]);
+            ->selectRaw(
+                '(6371 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude)))) AS distance',
+                [$query->latitude, $query->longitude, $query->latitude]
+            )
+            ->having('distance', '<', $query->radius)
+            ->orderBy('distance');
     }
 
 }

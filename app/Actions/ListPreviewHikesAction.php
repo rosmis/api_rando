@@ -7,7 +7,6 @@ namespace App\Actions;
 use App\Dto\HikeQueryDto;
 use App\Models\Hike;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
 
 class ListPreviewHikesAction
 {

@@ -18,7 +18,7 @@ class HikeBuilder extends Builder
     public function withEssentialColumns(): self
     {
         return $this->select(
-            ['id', 'title', 'difficulty', 'excerpt', 'latitude', 'longitude', 'activity_type', 'distance', 'duration']
+            ['id', 'title', 'difficulty', 'latitude', 'longitude', 'distance', 'duration', 'municipality', 'highest_point', 'lowest_point']
         );
     }
 

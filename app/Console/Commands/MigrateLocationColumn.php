@@ -3,13 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Models\Hike;
-use App\Traits\GpsConversionTrait;
 use Illuminate\Console\Command;
 
 class MigrateLocationColumn extends Command
 {
-    use GpsConversionTrait;
-
     /**
      * The name and signature of the console command.
      *

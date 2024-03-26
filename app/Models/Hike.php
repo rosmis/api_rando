@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use App\Builders\HikeBuilder;
-use App\Traits\GpsConversionTrait;
+use App\Enum\HikeDifficulty;
 use Illuminate\Database\Query\Builder as QueryBuilder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,7 +17,7 @@ use Illuminate\Support\Collection;
  * @property string excerpt
  * @property string description
  * @property string activity_type
- * @property string difficulty
+ * @property HikeDifficulty difficulty
  * @property int distance
  * @property string duration
  * @property int positive_elevation
@@ -54,6 +53,7 @@ class Hike extends Model
         'is_return_starting_point' => 'boolean',
         'latitude' => 'float',
         'longitude' => 'float',
+        'difficulty' => HikeDifficulty::class,
     ];
 
     public function images(): HasMany

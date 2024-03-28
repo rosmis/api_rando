@@ -17,6 +17,8 @@ class HikeQueryRequest extends FormRequest
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
             'radius' => 'required|integer',
+            'distance' => 'nullable|integer',
+            'duration' => 'nullable|integer',
         ];
     }
 }

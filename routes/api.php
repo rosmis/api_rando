@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HikesController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware(['auth:sanctum'])->group(function () {
-// });
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
 Route::prefix('hikes')->group(function () {
     Route::get('/', [HikesController::class, 'index']);
@@ -27,9 +29,3 @@ Route::prefix('hikes')->group(function () {
 
     Route::post('/', [HikesController::class, 'store']);
 });
-
-Route::post('/login', [AuthController::class, 'login']);
-
-
-
-// Route::get('/species', [HikesController::class, 'index']);
